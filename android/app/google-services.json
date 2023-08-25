@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1075642509518",
+    "project_id": "smart-change-app-75006",
+    "storage_bucket": "smart-change-app-75006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075642509518:android:8fa8aee2e23078951c089f",
+        "android_client_info": {
+          "package_name": "com.example.smart_change"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075642509518-7270apfoaj0o1mgdmuh0rd3c8bltp5nj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqKMF5vBPdexvVOpC4XKLocR3LybihBWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075642509518-7270apfoaj0o1mgdmuh0rd3c8bltp5nj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
