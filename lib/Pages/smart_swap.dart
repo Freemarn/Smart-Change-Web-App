@@ -95,62 +95,24 @@ class _SmartSwapPageState extends State<SmartSwapPage> {
                 height: 20,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                
                 children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.circle_rounded,
-                        size: 11,
-                        color: AppColors.ClickableBottonColor,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Merchant List',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.blueGrey.shade700,
-                            fontWeight: FontWeight.w800),
-                      ),
-                    ],
+                  const Icon(
+                    Icons.circle_rounded,
+                    size: 11,
+                    color: AppColors.ClickableBottonColor,
                   ),
-                  Row(
-                    children: [
-                      Text('Filter :',
-                          style: TextStyle(
-                              fontSize: 9,
-                              color: Colors.blueGrey.shade700,
-                              fontWeight: FontWeight.w600)),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Container(
-                        height: 20,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              'BTC',
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.blueGrey.shade700,
-                                  fontWeight: FontWeight.w900),
-                            ),
-                            const Icon(
-                              Icons.arrow_drop_down_outlined,
-                              size: 17,
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'Merchant List',
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.blueGrey.shade700,
+                        fontWeight: FontWeight.w800),
+                  ),
+                 
                 ],
               ),
               const SizedBox(
@@ -165,20 +127,22 @@ class _SmartSwapPageState extends State<SmartSwapPage> {
                     if (snapshot.hasError) {
                       return const Center(child: Text("Something went wrong"));
                     }
+                    
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: Text("Loading..."));
+                    }
+                    
                     if (!snapshot.hasData) {
                       // Collection is empty
                       return const Center(child: Text("Empty"));
                     }
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: Text("Loading..."));
-                    }
 
-                    List<DocumentSnapshot> userDocuments = [];
-                    if(search.isNotEmpty){
-                      userDocuments = snapshot.data!.docs.where((element) => UserModel.fromMap(element.data() as Map<String, dynamic>).username.contains(search)).toList();
-                    } else{
-                      userDocuments = snapshot.data!.docs;
-                    }
+                    List<DocumentSnapshot> userDocuments =snapshot.data!.docs.where((element) => UserModel.fromMap(element.data() as Map<String, dynamic>).username.contains(search)).toList();;
+                    // if(search.isNotEmpty){
+                    //   userDocuments = snapshot.data!.docs.where((element) => UserModel.fromMap(element.data() as Map<String, dynamic>).username.contains(search)).toList();
+                    // } else{
+                    //   userDocuments = snapshot.data!.docs;
+                    // }
 
                     return ListView.builder(
                       itemCount: userDocuments.length,

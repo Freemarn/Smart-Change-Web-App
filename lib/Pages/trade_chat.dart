@@ -109,7 +109,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
                       final doc = documents[index];
                       final chat = ChatCollectionModel.fromMap(
                           doc.data() as Map<String, dynamic>);
-
+                          chat.chatRoomId = doc.id;
                       return ChatTile(chat: chat);
                     },
                   );
