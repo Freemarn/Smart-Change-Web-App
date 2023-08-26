@@ -43,13 +43,14 @@ class _SignUpState extends State<SignUp> {
   }
 
   void signUserUp() async {
-      try {
+     if(passwordConfirmed()){
+       try {
         final response =
             await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email,
           password: password1,
         );
-          openDialog(context);
+         
         
 
         await addUserDetails(
@@ -63,6 +64,7 @@ class _SignUpState extends State<SignUp> {
       } catch (e) {
         print(e);
       }
+     }
     
   }
 
@@ -159,6 +161,7 @@ class _SignUpState extends State<SignUp> {
                   ]),
               child: Center(
                 child: GestureDetector(
+                  
                   onTap: () async {
                     // await signUserUp();
                     // print("Sign up");
@@ -169,7 +172,9 @@ class _SignUpState extends State<SignUp> {
                           phone,
                           email,
                         );
+                         
                   },
+                   
                   child: const Text(
                     'SignUp',
                     style: TextStyle(
