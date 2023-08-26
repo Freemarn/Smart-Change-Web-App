@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../chat_screen.dart';
 import '../models/chat_model.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ChatTile extends StatelessWidget {
   const ChatTile({
@@ -77,7 +78,7 @@ class ChatTile extends StatelessWidget {
                               color: Colors.grey.shade300, width: 2)),
                       child: Center(
                         child: Text(
-                          chat.recentMesgTime.toString(),
+                          timeago.format(DateTime.parse(chat.recentMesgTime.toString()), locale: 'en_short'),
                           style: TextStyle(
                               fontSize: 9,
                               fontWeight: FontWeight.w400,

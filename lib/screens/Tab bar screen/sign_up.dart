@@ -43,6 +43,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   void signUserUp() async {
+    
      if(passwordConfirmed()){
        try {
         final response =
@@ -84,6 +85,10 @@ class _SignUpState extends State<SignUp> {
       return false;
     }
   }
+
+  
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +168,7 @@ class _SignUpState extends State<SignUp> {
                 child: GestureDetector(
                   
                   onTap: () async {
+                  
                     // await signUserUp();
                     // print("Sign up");
                     await context.read<SignupProvider>().signup(
@@ -172,6 +178,8 @@ class _SignUpState extends State<SignUp> {
                           phone,
                           email,
                         );
+
+                          
                          
                   },
                    
@@ -241,81 +249,5 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  void openDialog(context) => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          backgroundColor: Colors.white,
-          title: const Center(
-            child: Text(
-              'Include Additional Security',
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Roboto',
-                  color: Color.fromARGB(255, 11, 44, 12)),
-            ),
-          ),
-          content: const SizedBox(
-            height: 180,
-            width: 250,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.security_outlined,
-                        size: 60,
-                        color: AppColors.ClickableBottonColor,
-                      ),
-                      SizedBox(height: 30),
-                      Center(
-                        child: Text(
-                          '   Include additional security features\nto protect your account from external\n   threats and unauthorized activities',
-                          style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto',
-                              color: Color.fromARGB(255, 11, 44, 12)),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                )
-              ],
-            ),
-          ),
-          actions: [
-            Row(
-              children: [
-                GestureDetector(
-                    onTap: () {},
-                    child: ColourlessButton(
-                      text: 'Skip',
-                      onPress: () {
-                        Navigator.of(context).pop();
-                      },
-                    )),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                    onTap: () {},
-                    child: OrangeButton(
-                      text: 'Continue',
-                      onPress: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const AdditionalSecure()));
-                      },
-                    )),
-              ],
-            )
-          ],
-        ),
-      );
+  
 }

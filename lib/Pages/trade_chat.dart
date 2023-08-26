@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_change/Models/message_models.dart';
 import 'package:smart_change/Models/user_model.dart';
@@ -87,7 +88,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream:
-                    FirebaseFirestore.instance.collection("chats").snapshots(),
+                    FirebaseFirestore.instance.collection("_chats").snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Center(child: Text("Something went wrong"));
@@ -100,7 +101,7 @@ class _TradeChatPageState extends State<TradeChatPage> {
                     return const Center(child: Text("Loading..."));
                   }
 
-                  List<DocumentSnapshot> documents = snapshot.data!.docs;
+                  List<DocumentSnapshot> documents = snapshot.data!.docs.where((element) => ChatCollectionModel.fromMap(element.data() as Map<String, dynamic>).userId == FirebaseAuth.instance.currentUser!.uid).toList();
 
                   return ListView.builder(
                     itemCount: documents.length,

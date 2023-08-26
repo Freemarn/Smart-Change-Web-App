@@ -49,7 +49,9 @@ class _ChatScreenState extends State<ChatScreen> {
               Container(
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  timeago.format(DateTime.parse(message.time)),
+                   timeago.format(DateTime.parse(message.time.toString())
+                  ),
+                 
                   style: TextStyle(
                       fontSize: 8,
                       fontWeight: FontWeight.w900,
@@ -134,7 +136,7 @@ class _ChatScreenState extends State<ChatScreen> {
               Container(
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  timeago.format(DateTime.parse(message.time)),
+                   timeago.format(DateTime.parse(message.time.toString())),
                   style: TextStyle(
                       fontSize: 8,
                       fontWeight: FontWeight.w900,
